@@ -148,3 +148,6 @@ footer {
     border: 2px solid dimgray;
     border-radius: 10px;
 }
+.demo-banner {
+    background-color: green;
+}
