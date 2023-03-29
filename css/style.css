@@ -150,4 +150,6 @@ footer {
 }
 .demo-banner {
     background-color: green;
+    text-align: center;
+    color: white;
 }
