@@ -17,11 +17,10 @@ footer {
 }
 .flight-menu {
     border-radius: 10px;
-    width: 50%;
     background-color: #ffffff;
-    border: 2px solid #222426;
+    border: 2px solid lightgrey;
+    box-shadow: 5px 5px 8px #888888;
     padding: 20px;
-    position: absolute;
     bottom: 10%;
     left: 25%;
 }
@@ -94,12 +93,14 @@ footer {
     border-radius: 10px;
     margin: 3px;
     padding: 10px;
-    border: 2px solid dimgray;
+    border: 2px solid lightgrey;
+    box-shadow: 0px 0px 8px #888888;
 }
 .callout {
   padding: 20px;
   margin: 20px 0;
-  border: 1px solid dimgray;
+  border: 2px solid lightgrey;
+  box-shadow: 5px 5px 8px #888888;
   border-left-width: 5px;
   border-left-color: #f0ad4e;
   border-radius: 10px;
@@ -109,7 +110,8 @@ footer {
     min-width: 100%;
 }
 .flight-options {
-    border: 2px solid dimgray;
+    border: 2px solid lightgrey;
+    box-shadow: 5px 5px 8px #888888;
     border-radius: 10px;
 }
 .black {
@@ -119,15 +121,18 @@ footer {
     colour: #ffffff;
 }
 .mmb_box_left {
-    border: 2px solid dimgray;
+    border: 2px solid lightgrey;
     border-radius: 10px 0px 0px 10px;
+    box-shadow: 0px 0px 8px #888888;
 }
 .mmb_box_right {
-    border: 2px solid dimgray;
+    border: 2px solid lightgrey;
     border-radius: 0px 10px 10px 0px;
+    box-shadow: 0px 0px 8px #888888;
 }
 .mmb_buttons {
-    border: 2px solid dimgray;
+    border: 2px solid lightgrey;
+    box-shadow: 0px 0px 8px #888888;
     border-radius: 10px;
     padding: 10px;
 }
@@ -145,7 +150,8 @@ footer {
 }
 .carousel-container {
     padding: 5px;
-    border: 2px solid dimgray;
+    border: 2px solid lightgrey;
+    box-shadow: 5px 5px 8px #888888;
     border-radius: 10px;
 }
 .demo-banner {
