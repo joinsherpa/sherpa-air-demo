@@ -3,6 +3,9 @@ function setHeaderImageHeight() {
     document.querySelector(".header").style.height = (window.innerHeight*0.50) + "px";
 }
 
+function openModal() {
+    document.getElementById("MMBmodal").style.display = "block";
+}
 
 function getTodaysDate() {
     var today = new Date().getFullYear()+'-'+("0"+(new Date().getMonth()+1)).slice(-2)+'-'+("0"+new Date().getDate()).slice(-2)
