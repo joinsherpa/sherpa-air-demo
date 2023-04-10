@@ -294,6 +294,7 @@ function populateMMB(){
 }
 
 function deepLink() {
+    console.log(getDestinationCode())
     switch (getDestinationCode()) {
         case "DXB":
             countryCode = "ARE";
@@ -303,7 +304,7 @@ function deepLink() {
             countryCode = "IND";
         case "ICN":
             countryCode = "KOR";
-        default:
+        case "CAI":
             countryCode = "EGY";
     }
     if (getReturnDate() == "null") {
