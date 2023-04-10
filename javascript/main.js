@@ -7,6 +7,12 @@ function openModal() {
     document.getElementById("MMBmodal").style.display = "block";
 }
 
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
 function getTodaysDate() {
     var today = new Date().getFullYear()+'-'+("0"+(new Date().getMonth()+1)).slice(-2)+'-'+("0"+new Date().getDate()).slice(-2)
     var nextWeek = new Date();
