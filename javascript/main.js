@@ -295,6 +295,14 @@ function populateMMB(){
 
 function deepLink() {
     switch (getDestinationCode()) {
+        case "DXB":
+            countryCode = "ARE";
+        case "IST":
+            countryCode = "TUR";
+        case "BOM":
+            countryCode = "IND";
+        case "ICN":
+            countryCode = "KOR";
         default:
             countryCode = "EGY";
     }
