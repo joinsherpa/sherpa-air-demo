@@ -8,8 +8,8 @@ function openModal() {
 }
 
 window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  if (event.target == document.getElementById("MMBmodal")) {
+    document.getElementById("MMBmodal").style.display = "none";
   }
 }
 
