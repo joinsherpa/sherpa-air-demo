@@ -295,7 +295,7 @@ function populateMMB(){
 
 function deepLink() {
     switch (getDestinationCode()) {
-        case "CAI":
+        default:
             countryCode = "EGY";
     }
     if (getReturnDate() == "null") {
