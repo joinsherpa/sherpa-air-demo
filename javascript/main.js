@@ -78,24 +78,25 @@ switch (destination) {
 
 //retrieves an itinerary from a list and redirects to mmb.html based on the retrieved itinerary
 function getItinerary(itinerary){
-    
+    console.log(itinerary)
     switch (itinerary) {
-        case "AAA":
+        case "CAI1":
             window.location.href = `mmb.html?origin=LHR&destination=CAI&outboundDate=2023-03-10&returnDate=2023-03-17&originName=London&destinationName=Cairo&passport=GBR`;
             break;
-        case "BBB": 
+        case "CDG2": 
             window.location.href = `mmb.html?origin=CDG&destination=ICN&outboundDate=2023-03-10&returnDate=2023-03-17&originName=Paris&destinationName=Seoul&passport=FRA`;
             break;
-        case "CCC":
+        case "IST3":
             window.location.href = `mmb.html?origin=JFK&destination=IST&outboundDate=2023-03-10&returnDate=2023-03-17&originName=New%20York&destinationName=Istanbul&passport=USA`;
             break;
-        case "DDD": 
+        case "DXB4": 
             window.location.href = `mmb.html?origin=YVR&destination=DXB&outboundDate=2023-03-10&returnDate=2023-03-17&originName=Vancouver&destinationName=Dubai&passport=CAN`;
             break;
-        default: 
+        case "BOM5": 
             window.location.href = `mmb.html?origin=YYZ&destination=BOM&outboundDate=2023-03-10&returnDate=2023-03-17&originName=Toronto&destinationName=Mumbai&passport=CAN`;
-        }
+            break;    
     }
+}
 
 //goes to mmb.html and passes existing query parameters
 function goToMMB(){
