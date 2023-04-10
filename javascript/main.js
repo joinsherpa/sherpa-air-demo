@@ -298,14 +298,19 @@ function deepLink() {
     switch (getDestinationCode()) {
         case "DXB":
             countryCode = "ARE";
+            break;
         case "IST":
             countryCode = "TUR";
+            break;
         case "BOM":
             countryCode = "IND";
+            break;
         case "ICN":
             countryCode = "KOR";
+            break;
         case "CAI":
             countryCode = "EGY";
+            break;
     }
     if (getReturnDate() == "null") {
         window.open(`https://apply.joinsherpa.com/travel-restrictions/${countryCode}?affiliateId=sherpaair&originAirport=${getOriginCode()}&nationality=${getPassport()}&fullyVaccinated=true&departureDate=${getOutboundDate()}&tripType=oneWay`, '_blank');
