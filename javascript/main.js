@@ -1,6 +1,6 @@
 
 function setHeaderImageHeight() {
-    document.querySelector(".header").style.height = (window.innerHeight*0.75) + "px";
+    document.querySelector(".header").style.height = (window.innerHeight*0.50) + "px";
 }
 
 
