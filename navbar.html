@@ -98,8 +98,8 @@
 		<div class="container">
 			<div id="MMBmodal" class="modal">
 				<div class="modal-content">
-					<p>Booking confirmation number:</p>
-					<button class="btn">Manage my booking</button>
+					<input id="bookingconf" class="form-control" type="text" placeholder="Booking confirmation number">
+					<button class="btn" onclick="getItinerary(document.getElementById('bookingconf').value)">Manage my booking</button>
 				</div>
 			</div>
 		</div>
