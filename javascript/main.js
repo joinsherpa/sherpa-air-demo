@@ -217,6 +217,8 @@ function getPassport(){
 //Populates the Booking Confirmation Page based on the URL Query Parameters
 function populateBookingConfirmationPage() 
 {
+     // populate Booking Reference with bookingRef
+     document.getElementById('bookingRef').insertAdjacentHTML("beforeend", getBookingReference());
      // populate DEPARTURE Origin with Origin Name & Origin Code
      document.getElementById('departureOrigin').innerHTML = `${getOriginName()} <br> (${getOriginCode()})`;
      // populate Departure Destination with Destination Name & Destination Code
