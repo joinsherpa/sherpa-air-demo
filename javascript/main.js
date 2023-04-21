@@ -89,7 +89,7 @@ function getItinerary(itinerary){
         case "CAI1":
             window.location.href = `mmb.html?origin=LHR&destination=CAI&outboundDate=2023-03-10&returnDate=2023-03-17&originName=London&destinationName=Cairo&passport=GBR`;
             break;
-        case "CDG2": 
+        case "ICN2": 
             window.location.href = `mmb.html?origin=CDG&destination=ICN&outboundDate=2023-03-10&returnDate=2023-03-17&originName=Paris&destinationName=Seoul&passport=FRA`;
             break;
         case "IST3":
