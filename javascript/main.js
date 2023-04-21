@@ -82,7 +82,7 @@ var bookingRef = destination + randNum
   } else {
     let returnDate = document.getElementById('returnDate').value;
   }
-  window.location.href = `flightsearch.html?bookingRef=$(bookingRef)&origin=${origin}&destination=${destination}&outboundDate=${outboundDate}&returnDate=${returnDate}&originName=${originName}&destinationName=${destinationName}&passport=${passport}`;
+  window.location.href = `flightsearch.html?bookingRef=${bookingRef}&origin=${origin}&destination=${destination}&outboundDate=${outboundDate}&returnDate=${returnDate}&originName=${originName}&destinationName=${destinationName}&passport=${passport}`;
 }
 
 //retrieves an itinerary from a list and redirects to mmb.html based on the retrieved itinerary
