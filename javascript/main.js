@@ -30,6 +30,7 @@ function goToFlightSearchPage() {
   let destination = toLocation.value;
   let outboundDate = document.getElementById('departDate').value;
   let returnDate = document.getElementById('returnDate').value;
+  var randNum =  Math.floor(Math.random() * 10) + 1;
   
   //Assigns OriginName based on Origin & Passport Based on Origin Country
   switch (origin) {
@@ -72,6 +73,8 @@ switch (destination) {
       destinationName = "Dubai";
       break;
 }
+    
+var bookingRef = destination + randNum
 
 // Checks if return date is disabled and flight search and sets it to null if it is. Otherwise returnDate is set to the date selected
   if (document.getElementById('returnDate').disabled == true) {
@@ -79,7 +82,7 @@ switch (destination) {
   } else {
     let returnDate = document.getElementById('returnDate').value;
   }
-  window.location.href = `flightsearch.html?origin=${origin}&destination=${destination}&outboundDate=${outboundDate}&returnDate=${returnDate}&originName=${originName}&destinationName=${destinationName}&passport=${passport}`;
+  window.location.href = `flightsearch.html?bookingRef=$(bookingRef)&origin=${origin}&destination=${destination}&outboundDate=${outboundDate}&returnDate=${returnDate}&originName=${originName}&destinationName=${destinationName}&passport=${passport}`;
 }
 
 //retrieves an itinerary from a list and redirects to mmb.html based on the retrieved itinerary
@@ -87,19 +90,19 @@ function getItinerary(itinerary){
     console.log(itinerary)
     switch (itinerary) {
         case "CAI1":
-            window.location.href = `mmb.html?origin=LHR&destination=CAI&outboundDate=2023-03-10&returnDate=2023-03-17&originName=London&destinationName=Cairo&passport=GBR`;
+            window.location.href = `mmb.html?bookingRef=CAI1&origin=LHR&destination=CAI&outboundDate=2023-03-10&returnDate=2023-03-17&originName=London&destinationName=Cairo&passport=GBR`;
             break;
         case "ICN2": 
-            window.location.href = `mmb.html?origin=CDG&destination=ICN&outboundDate=2023-03-10&returnDate=2023-03-17&originName=Paris&destinationName=Seoul&passport=FRA`;
+            window.location.href = `mmb.html?bookingRef=ICN2&origin=CDG&destination=ICN&outboundDate=2023-03-10&returnDate=2023-03-17&originName=Paris&destinationName=Seoul&passport=FRA`;
             break;
         case "IST3":
-            window.location.href = `mmb.html?origin=JFK&destination=IST&outboundDate=2023-03-10&returnDate=2023-03-17&originName=New%20York&destinationName=Istanbul&passport=USA`;
+            window.location.href = `mmb.html?bookingRef=IST3&origin=JFK&destination=IST&outboundDate=2023-03-10&returnDate=2023-03-17&originName=New%20York&destinationName=Istanbul&passport=USA`;
             break;
         case "DXB4": 
-            window.location.href = `mmb.html?origin=YVR&destination=DXB&outboundDate=2023-03-10&returnDate=2023-03-17&originName=Vancouver&destinationName=Dubai&passport=CAN`;
+            window.location.href = `mmb.html?bookingRef=DXB4&origin=YVR&destination=DXB&outboundDate=2023-03-10&returnDate=2023-03-17&originName=Vancouver&destinationName=Dubai&passport=CAN`;
             break;
         case "BOM5": 
-            window.location.href = `mmb.html?origin=YYZ&destination=BOM&outboundDate=2023-03-10&returnDate=2023-03-17&originName=Toronto&destinationName=Mumbai&passport=CAN`;
+            window.location.href = `mmb.html?bookingRef=BOM5&origin=YYZ&destination=BOM&outboundDate=2023-03-10&returnDate=2023-03-17&originName=Toronto&destinationName=Mumbai&passport=CAN`;
             break;    
     }
 }
@@ -129,6 +132,11 @@ function getQueryString() {
 
 }
 
+//Return the BOOKING REFERENCE from the URL Query Parameters
+function getBookingReference() {
+    const bookingRef = getQueryString().get('bookingRef')
+    return bookingRef
+}
 
 //Return the ORIGIN from the URL Query Parameters
 function getOriginCode() {
@@ -284,6 +292,8 @@ function populateReturnSearchPage(){
 }
 //Populates the MMB Page based on the URL Query Parameters
 function populateMMB(){
+    // populate Booking Reference with bookingRef
+    document.getElementById('bookingRef').insertAdjacentHTML("beforeend", getBookingReference());
     // populate Departure Origin with const origin
     document.getElementById('departureOrigin').innerHTML = `${getOriginName()} <br> (${getOriginCode()})`;
     // populate Departure Destination with const destination
