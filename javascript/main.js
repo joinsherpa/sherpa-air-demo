@@ -7,9 +7,23 @@ function openModal() {
     document.getElementById("MMBmodal").style.display = "block";
 }
 
+function openBookingConfirmationEmail() {
+    document.getElementById("bookingConfModal").style.display = "block";
+}
+
+function openMarketingEmail() {
+    document.getElementById("visaMarketingModal").style.display = "block";
+}
+
 window.onclick = function(event) {
   if (event.target == document.getElementById("MMBmodal")) {
     document.getElementById("MMBmodal").style.display = "none";
+  }
+  else if (event.target == document.getElementById("bookingConfModal")) {
+    document.getElementById("bookingConfModal").style.display = "none";
+  }
+  else if (event.target == document.getElementById("visaMarketingModal")) {
+    document.getElementById("visaMarketingModal").style.display = "none";
   }
 }
 
