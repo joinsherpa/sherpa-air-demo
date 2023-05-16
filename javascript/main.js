@@ -537,7 +537,7 @@ async function displayVisaRequirements() {
   }, {});
 
   const renderElement = document.getElementById('trips-v3');
-  html += `<div style="margin:20px">
+  html += `<div>
   <p>${headline}</p>
  </div>`
   renderElement.innerHTML = html
