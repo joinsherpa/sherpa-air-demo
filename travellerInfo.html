@@ -316,13 +316,15 @@
         <!-- Element used to display the visa requirements-->
         <div id="trips-v3"></div>
 
-        <form id="radio" style="display: none">
-          <input class="form-check-input" type="radio" id="send" value="send" name="radio">
-          <label class="form-check-label" for="send">Send me information for applying for this visa</label
-          ><br><br>
-          <input class="form-check-input" type="radio" id="skip" value="skip" name="radio">
-          <label class="form-check-label" for="skip">I already have a visa or I'll get a visa later</label><br>
-        </form><br><br>
+        <div class="callout" id="radio" style="display: none">
+          <form>
+            <input class="form-check-input" type="radio" id="send" value="send" name="radio">
+            <label class="form-check-label" for="send">Send me information for applying for this visa</label
+            ><br><br>
+            <input class="form-check-input" type="radio" id="skip" value="skip" name="radio">
+            <label class="form-check-label" for="skip">I already have a visa or I'll get a visa later</label><br>
+          </form><br><br>
+        </div>
       </div>
       
       <button class="btn" type="button"  onclick="goHome()"> Return to search</button>
