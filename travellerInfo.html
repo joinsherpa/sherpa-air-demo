@@ -32,10 +32,6 @@
     </script>
     <!--navigation bar end-->
 
-    <header class="page-header header container-fluid" style="background-image:url('css/images/airplane_interior.jpg');">
-      <div class="overlay"></div><br><br><br><br><br><br><br><br>
-    </header>
-
     <div class="container">
       <form>
         <label for="fname">Given names</label><br>
@@ -311,24 +307,22 @@
         </select>
         <br><br>
         <label for="birthday">Date of birth</label><br>
-        <input type="date" id="birthday" name="birthday">
+        <input type="date" id="birthday" name="birthday"><br>
       </form>
 
       <!-- Element used to display the visa requirements-->
       <div id="trips-v3"></div>
 
       <form id="radio" style="display: none">
-      <input type="radio" id="send" value="send" name="radio">
-      <label for="send">Send me information for applying for this visa</label
-      ><br><br>
-      <input type="radio" id="skip" value="skip" name="radio">
-      <label for="skip">I already have a visa or I'll get a visa later</label><br>
-      </form>
-
-
-      <br><br>
+        <input type="radio" id="send" value="send" name="radio">
+        <label for="send">Send me information for applying for this visa</label
+        ><br><br>
+        <input type="radio" id="skip" value="skip" name="radio">
+        <label for="skip">I already have a visa or I'll get a visa later</label><br>
+      </form><br>
+      
       <button class="btn" type="button"  onclick="goHome()"> Return to search</button>
-      <br>
+      <br><br>
     </div>
   </body>
 
