@@ -33,19 +33,21 @@
     <!--navigation bar end-->
 
     <div class="container">
+      <h1>Passenger details</h1><br>
       <form>
-        <label for="fname">Given names</label><br>
-        <input type="text" id="fname" name="fname"><br><br>
-        <label for="lname">Surnames</label><br>
-        <input type="text" id="lname" name="lname">
+        <label class="form-check-label" for="fname">Given names</label><br>
+        <input class="form-check-input" type="text" id="fname" name="fname"><br><br>
+        <label class="form-check-label" for="lname">Surnames</label><br>
+        <input class="form-check-input" type="text" id="lname" name="lname">
         <br><br>
-        <label for="country">Nationality</label><br>
+        <label class="form-check-label" for="country">Nationality</label><br>
         <select
         id="country"
         name="country"
         onchange="submitNationality(this.value)"
+        class="form-control"
         >
-          <option selected="selected" value=""></option>
+          <option selected="selected" value="">Select</option>
           <option value="AF">Afghanistan</option>
           <option value="AX">Aland Islands</option>
           <option value="AL">Albania</option>
@@ -300,26 +302,26 @@
           <option value="ZW">Zimbabwe</option>
         </select>
         <br><br>
-        <label for="gender">Gender</label><br>
-        <select id="gender">
+        <label class="form-check-label" for="gender">Gender</label><br>
+        <select class="form-control" id="gender">
           <option value="m">Male</option>
           <option value="f">Female</option>
         </select>
         <br><br>
-        <label for="birthday">Date of birth</label><br>
-        <input type="date" id="birthday" name="birthday"><br>
+        <label class="form-check-label" for="birthday">Date of birth</label><br>
+        <input class="form-check-input" type="date" id="birthday" name="birthday"><br>
       </form>
 
       <!-- Element used to display the visa requirements-->
       <div id="trips-v3"></div>
 
       <form id="radio" style="display: none">
-        <input type="radio" id="send" value="send" name="radio">
-        <label for="send">Send me information for applying for this visa</label
+        <input class="form-check-input" type="radio" id="send" value="send" name="radio">
+        <label class="form-check-label" for="send">Send me information for applying for this visa</label
         ><br><br>
-        <input type="radio" id="skip" value="skip" name="radio">
-        <label for="skip">I already have a visa or I'll get a visa later</label><br>
-      </form><br>
+        <input class="form-check-input" type="radio" id="skip" value="skip" name="radio">
+        <label class="form-check-label" for="skip">I already have a visa or I'll get a visa later</label><br>
+      </form><br><br>
       
       <button class="btn" type="button"  onclick="goHome()"> Return to search</button>
       <br><br>
