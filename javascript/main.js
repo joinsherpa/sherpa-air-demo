@@ -581,7 +581,7 @@ function displayRequirement(requirement) {
 function submitNationality(country) {
   html = ''
   document.getElementById("radio").style.display = "none"
-  document.getElementById("radio").reset(); 
+  document.getElementById("radioForm").reset(); 
   passport = country
   displayVisaRequirements();
 }
