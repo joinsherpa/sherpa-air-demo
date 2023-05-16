@@ -384,3 +384,205 @@ function buildElement() {
     return elementConfig;
 
 }
+
+
+
+
+var passport = 'CAN'
+var destination = 'USA'
+var transit = 'none'
+var headline = ''
+var html = ''
+
+/* Base URLs needed */
+const URL_TRIPS_V3 =
+  'https://requirements-api.sandbox.joinsherpa.com/v3/trips?include=restriction,procedure';
+
+/* Sandbox Key, DO NOT USE IN PRODUCTION */
+const API_KEY_TRIPS_V3 = 'AIzaSyAqD2UB9rjUl0A2jvh_xiiKsJowbc7-eM8';
+
+function itinerary(passport) {
+  if (transit == "none") {
+    return {
+      data: {
+        type: 'TRIP',
+        attributes: {
+          traveller: {
+            passports: [passport],
+            vaccinations: [
+              {
+                type: 'COVID_19',
+                status: 'FULLY_VACCINATED',
+              },
+            ],
+          },
+          locale: 'en-US',
+          travelNodes: [
+            {
+              type: 'ORIGIN',
+              departure: {
+                date: '2023-05-12',
+                time: '05:00',
+                travelMode: 'AIR',
+              },
+              locationCode: 'CAN',
+            },
+            {
+              type: 'DESTINATION',
+              arrival: {
+                date: '2023-05-12',
+                time: '08:00',
+                travelMode: 'AIR',
+              },
+              airportCode: [getDestinationCode()],
+            },
+          ],
+        },
+      },
+    };
+  }
+  else {
+    return {
+      data: {
+        type: 'TRIP',
+        attributes: {
+          traveller: {
+            passports: [passport],
+            vaccinations: [
+              {
+                type: 'COVID_19',
+                status: 'FULLY_VACCINATED',
+              },
+            ],
+          },
+          locale: 'en-US',
+          travelNodes: [
+            {
+              type: 'ORIGIN',
+              departure: {
+                date: '2023-05-12',
+                time: '05:00',
+                travelMode: 'AIR',
+              },
+              locationCode: 'CAN',
+            },
+            {
+              type: 'TRANSIT',
+              arrival: {
+                date: '2023-05-12',
+                time: '05:00',
+                travelMode: 'AIR',
+              },
+              departure: {
+                date: '2023-05-12',
+                time: '05:00',
+                travelMode: 'AIR',
+              },
+              locationCode: [transit],
+            },
+            {
+              type: 'DESTINATION',
+              arrival: {
+                date: '2023-05-12',
+                time: '08:00',
+                travelMode: 'AIR',
+              },
+              airportCode: [getDestinationCode()],
+            },
+          ],
+        },
+      },
+    };
+    }
+  }
+
+
+
+// A global map to read a specific restriction from
+var requirementsHashMap = {};
+
+/*
+  A function that retrieves all travel requirements based on REQUEST_TRIPS_V3
+  and renders only the visa requirements
+*/
+async function displayVisaRequirements() {
+  // Make API call to v3/trips
+  const responseRaw = await fetch(URL_TRIPS_V3, {
+    method: 'POST',
+    headers: {
+      accept: 'application/json',
+      'content-type': 'application/vnd.api+json',
+      'x-api-key': API_KEY_TRIPS_V3,
+    },
+    body: JSON.stringify(itinerary(passport)),
+  });
+  const response = await responseRaw.json();
+  console.log(responseRaw.status, await response);
+
+  // Get information groups
+  const requirementsAll = response.data.attributes.informationGroups;
+  headline = requirementsAll[0].headline
+
+
+  // Find the information group related to visa requirements
+  const requirementsVisa = requirementsAll.find(
+    (requirementsGroup) => requirementsGroup.type == 'VISA_REQUIREMENTS'
+  );
+
+  // Convert the included restrictions and procedures to a hash map
+  // This enables faster look up afterwards
+  requirementsHashMap = response.included.reduce(function (map, obj) {
+    map[obj.id] = obj;
+    return map;
+  }, {});
+
+  const renderElement = document.getElementById('trips-v3');
+  html += `<div style="margin:20px">
+  <p>${headline}</p>
+ </div>`
+  renderElement.innerHTML = html
+
+  // Parse and display requirements recursively
+  processGroupings(requirementsVisa.groupings, renderElement);
+}
+
+/*
+  Displays Groupings and their associated data.
+  This functions has to be recursive, because a grouping may have an object with the same type
+  embedded inside
+*/
+function processGroupings(groupings, parentElement) {
+  groupings.forEach((grouping) => {
+    // Render all data in the grouping
+    grouping.data.forEach((requirement) =>
+      displayRequirement(requirementsHashMap[requirement.id])
+    );
+
+    // Call the same function on the child groupings if they exist
+    if (grouping.groupings) {
+      processGroupings(groupings.groupings, parentElement);
+    }
+  });
+}
+
+/*
+  Displays a specific requirement 
+*/
+function displayRequirement(requirement) {
+  requirement.attributes.actions.forEach((action) => {
+    if (action.provider == 'sherpa') {
+      // If sherpa offers this particular visa
+      console.log(action);
+      document.getElementById("radio").style.display = "block"
+    }
+  });
+}
+
+function submitNationality(country) {
+  html = ''
+  document.getElementById("radio").style.display = "none"
+  document.getElementById("radio").reset(); 
+  passport = country
+  displayVisaRequirements();
+}
+
