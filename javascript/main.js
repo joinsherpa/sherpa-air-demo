@@ -132,7 +132,7 @@ function goToBookingConfirmation() {
 }
 
 //goes to booking_confirmation.html and passes existing query parameters
-function gotoTravellerInfo(){
+function goToTravellerInfo(){
     if (getReturnDate() == 'null' || window.location.pathname.indexOf('/returnsearch.html') !== -1) {
         window.location.href = `travellerInfo.html${window.location.search}`;
     }
