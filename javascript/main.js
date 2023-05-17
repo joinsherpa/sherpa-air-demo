@@ -127,14 +127,14 @@ function goToMMB(){
 }
 
 //goes to travellerInfo.html and passses existing query parameters
-function goToTravellerInfo() {
-    window.location.href = `travellerInfo.html${window.location.search}`;
+function goToBookingConfirmation() {
+    window.location.href = `booking_confirmation.html${window.location.search}`;
 }
 
 //goes to booking_confirmation.html and passes existing query parameters
-function goToBookingConfirmation(){
+function gotoTravellerInfo(){
     if (getReturnDate() == 'null' || window.location.pathname.indexOf('/returnsearch.html') !== -1) {
-        window.location.href = `booking_confirmation.html${window.location.search}`;
+        window.location.href = `travellerInfo.html${window.location.search}`;
     }
     else {
         window.location.href = `returnsearch.html${window.location.search}`;
