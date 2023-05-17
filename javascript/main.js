@@ -126,6 +126,11 @@ function goToMMB(){
     window.location.href = `mmb.html${window.location.search}`;
 }
 
+//goes to travellerInfo.html and passses existing query parameters
+function goToTravellerInfo() {
+    window.location.href = `travellerInfo.html${window.location.search}`;
+}
+
 //goes to booking_confirmation.html and passes existing query parameters
 function goToBookingConfirmation(){
     if (getReturnDate() == 'null' || window.location.pathname.indexOf('/returnsearch.html') !== -1) {
