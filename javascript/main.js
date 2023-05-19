@@ -86,10 +86,10 @@ switch (destination) {
   case "DXB":
       destinationName = "Dubai";
       break;
-  case "HKG":
-      destinationName = "HKG";
+  case "SGN":
+      destinationName = "Ho Chi Minh";
       break;
-      
+
 }
     
 var bookingRef = destination + randNum
@@ -267,7 +267,37 @@ function populateBookingConfirmationPage()
 
 //Populates the Flight Search Page based on the URL Query Parameters
 function populateFlightSearchPage(){
-     // populate page title with origin and destination
+    
+
+  //  if (getDestinationCode() == "HKG") {
+  //   console.log('destinatinon is hong kong')
+
+  //   // populate page title with origin and destination
+  //   document.getElementById('flightSearchTitle').innerHTML = `Flights from ${getOriginName()} (${getOriginCode()}) to ${getDestinationName()} (${getDestinationCode()})`;
+  //   // populate Departure Origin with const origin
+  //   document.getElementById('departureOrigin').innerHTML = `${getOriginName()} <br> (${getOriginCode()})`;
+  //   // populate Departure Destination with const destination
+  //   document.getElementById('departureDestination').innerHTML = `${getDestinationName()} <br> (${getDestinationCode()})`;
+  //   document.getElementById('outboundDepartureDate').insertAdjacentHTML("afterbegin", getOutboundDate());
+  //   document.getElementById('outboundArrivalDate').insertAdjacentHTML("afterbegin", getOutboundDate());
+
+  //   // populate Departure Origin with const origin
+  //   document.getElementById('departureOrigin2').innerHTML = `${getOriginName()} <br> (${getOriginCode()})`;
+  //   // populate Departure Destination with const destination
+  //   document.getElementById('departureDestination2').innerHTML = `${getDestinationName()} <br> (${getDestinationCode()})`;
+  //   document.getElementById('outboundDepartureDate2').insertAdjacentHTML("afterbegin", getOutboundDate());
+  //   document.getElementById('outboundArrivalDate2').insertAdjacentHTML("afterbegin", getOutboundDate());
+
+  //   // populate Departure Origin with const origin
+  //   document.getElementById('departureOrigin3').innerHTML = `${getOriginName()} <br> (${getOriginCode()})`;
+  //   // populate Departure Destination with const destination
+  //   document.getElementById('departureDestination3').innerHTML = `${getDestinationName()} <br> (${getDestinationCode()})`;
+  //   document.getElementById('outboundDepartureDate3').insertAdjacentHTML("afterbegin", getOutboundDate());
+  //   document.getElementById('outboundArrivalDate3').insertAdjacentHTML("afterbegin", getOutboundDate());
+
+  //  }
+  
+    // populate page title with origin and destination
      document.getElementById('flightSearchTitle').innerHTML = `Flights from ${getOriginName()} (${getOriginCode()}) to ${getDestinationName()} (${getDestinationCode()})`;
      // populate Departure Origin with const origin
      document.getElementById('departureOrigin').innerHTML = `${getOriginName()} <br> (${getOriginCode()})`;
