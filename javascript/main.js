@@ -86,6 +86,10 @@ switch (destination) {
   case "DXB":
       destinationName = "Dubai";
       break;
+  case "HKG":
+      destinationName = "HKG";
+      break;
+      
 }
     
 var bookingRef = destination + randNum
