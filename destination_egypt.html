@@ -59,10 +59,6 @@
   </div>
 
   <div class="container my-5">
-
-  </div>
-
-  <div class="container my-5">
     <h2>Where to stay</h2>
     <div class="row">
       <div class="col-md-4">
@@ -78,6 +74,37 @@
         <p><strong>Hotel C</strong> - Enjoy a peaceful stay in this hotel overlooking the beautiful Aswan Dam.</p>
       </div>
     </div>
+      
+    <div id="sherpa-trip-element"></div>
+    <script>
+        elementConfig = {
+            travellers: [{
+                nationality: 'CAN',
+                vaccinations: [{
+                    type: 'COVID_19',
+                    status: 'FULLY_VACCINATED',
+                },
+                ],
+            },
+            ],
+            segments: [{
+                segmentType: 'OUTBOUND',
+                origin: {
+                    countryCode: 'CAN',
+                },
+                destination: {
+                    countryCode: 'EGY',
+                },
+            }]
+        }
+        function onSherpaEvent(event) {
+            // Ensure that the sdk is loaded before creating the element:
+            if (event.type === 'sdkLoaded') {
+                $sherpa.V2.createElement('trip', elementConfig).mount('#sherpa-trip-element');
+            }
+        }
+    </script>
+  
   </div>
 </body>
   
