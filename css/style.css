@@ -98,6 +98,7 @@ footer {
 }
 .image-box {
     border-radius: 10px;
+    padding: 10px;
     border: 2px solid lightgrey;
     box-shadow: 0px 0px 8px #888888;
 }
