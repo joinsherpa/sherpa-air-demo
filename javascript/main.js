@@ -11,10 +11,10 @@ function openBookingConfirmationEmail() {
 }
 
 function openMarketingEmail() {
-	console.log(document.getElementById("visaMarketingModal").style.display);
+	document.getElementById("visaMarketingModal").style.display) = "block";
 }
 
-/*window.onclick = function(event) {
+window.onclick = function(event) {
 	if (event.target == document.getElementById("MMBmodal")) {
 		document.getElementById("MMBmodal").style.display = "none";
 	} else if (event.target == document.getElementById("bookingConfModal")) {
@@ -22,7 +22,7 @@ function openMarketingEmail() {
 	} else if (event.target == document.getElementById("visaMarketingModal")) {
 		document.getElementById("visaMarketingModal").style.display = "none";
 	}
-}*/
+}
 
 function getTodaysDate() {
 	var today = new Date().getFullYear() + '-' + ("0" + (new Date().getMonth() + 1)).slice(-2) + '-' + ("0" + new Date().getDate()).slice(-2)
