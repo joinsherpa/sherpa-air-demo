@@ -127,6 +127,11 @@ function goToMMB() {
 	window.location.href = `mmb.html${window.location.search}`;
 }
 
+//goes to destination_egypt.html
+function destinationEgypt() {
+	window.location.href = `destination_egypt.html`;
+}
+
 //goes to travellerInfo.html and passses existing query parameters
 function goToBookingConfirmation() {
 	window.location.href = `booking_confirmation.html${window.location.search}`;
