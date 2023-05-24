@@ -11,7 +11,7 @@ function openBookingConfirmationEmail() {
 }
 
 function openMarketingEmail() {
-	document.getElementById("visaMarketingModal").style.display) = "block";
+	document.getElementById("visaMarketingModal").style.display = "block";
 }
 
 window.onclick = function(event) {
