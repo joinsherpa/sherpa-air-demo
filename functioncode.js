@@ -35,7 +35,7 @@ function sendPostRequest() {
             }
         }
     };
-            axios.get('https://requirements-api.sandbox.joinsherpa.com/v2/trips?affiliateId=sherpa&key=AIzaSyBMytiDGtwdHYAf2juFwPeXZr0x2KLTI3I&language=en-US&include=restriction,procedure', data, {
+            axios.post('https://requirements-api.sandbox.joinsherpa.com/v2/trips?affiliateId=sherpa&key=AIzaSyBMytiDGtwdHYAf2juFwPeXZr0x2KLTI3I&language=en-US&include=restriction,procedure', data, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*',
