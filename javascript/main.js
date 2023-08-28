@@ -412,6 +412,15 @@ function populateReturnSearchPage() {
 		document.getElementById('returnArrivalDate3').insertAdjacentHTML("afterbegin", getReturnDate());
 	}
 }
+
+//Populates the traveller info Page based on the URL Query Parameters
+function populateTravellerInfo() {
+	document.getElementById('cartDeparture').innerHTML = `${getOriginName()} to ${getDestinationName()}<br>${getOutboundDate()}`
+	if (getReturnDate() != 'null') {
+		document.getElementById('cartReturn').innerHTML = `${getDestinationName()} to ${getDestinationName()}<br>${getReturnDate()}`
+	}
+}
+
 //Populates the MMB Page based on the URL Query Parameters
 function populateMMB() {
 	// populate Booking Reference with bookingRef
