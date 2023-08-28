@@ -433,16 +433,16 @@ function populateReturnSearchPage() {
 
 //Populates the traveller info Page based on the URL Query Parameters
 function populateTravellerInfo() {
-	document.getElementById('cartDeparture').innerHTML = `${getOriginName()} to ${getDestinationName()}<br>${getOutboundDate()}`
-	document.getElementById('cartDeparturePrice').innerHTML = `${getOutboundPrice()}`
-	if (getReturnDate() != 'null') {
-		document.getElementById('cartReturn').innerHTML = `${getDestinationName()} to ${getOriginName()}<br>${getReturnDate()}`
-		document.getElementById('cartReturnPrice').innerHTML = `${getReturnPrice()}`
-	}
 	var price1 = parseInt(getOutboundPrice())
 	var price2 = parseInt(getReturnPrice())
 	var total = price1 + price2
-	document.getElementById('totalPrice').innerHTML = `${total}`
+	document.getElementById('cartDeparture').innerHTML = `${getOriginName()} to ${getDestinationName()}<br>${getOutboundDate()}`
+	document.getElementById('cartDeparturePrice').innerHTML = `${price1.toFixed(2)}`
+	if (getReturnDate() != 'null') {
+		document.getElementById('cartReturn').innerHTML = `${getDestinationName()} to ${getOriginName()}<br>${getReturnDate()}`
+		document.getElementById('cartReturnPrice').innerHTML = `${price2.toFixed(2)}`
+	}
+	document.getElementById('totalPrice').innerHTML = `${total.toFixed(2)}`
 }
 
 //Populates the MMB Page based on the URL Query Parameters
@@ -732,12 +732,12 @@ function submitNationality(country) {
 
 function addCartVisa(name, price) {
 	document.getElementById('cartVisa').innerHTML = name
-	document.getElementById('cartVisaPrice').innerHTML = price
+	document.getElementById('cartVisaPrice').innerHTML = price.toFixed(2)
 	document.getElementById('radio').style.display = "none"
 	var price1 = parseInt(getOutboundPrice())
 	var price2 = parseInt(getReturnPrice())
 	var price3 = parseInt(price)
 	var total = price1 + price2 + price3
-	document.getElementById('totalPrice').innerHTML = `${total}`
+	document.getElementById('totalPrice').innerHTML = `${total.toFixed(2)}`
 }
 
