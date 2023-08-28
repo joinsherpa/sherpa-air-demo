@@ -682,6 +682,9 @@ function displayRequirement(requirement, parentElement) {
     				<button class="btn">Add to cart</button>
 				</div>`
 			parentElement.innerHTML = html
+			document.getElementById("radio").style.display = "block"
+			document.getElementById("radioForm").style.display = "none"
+
 		}
 	});
 }
