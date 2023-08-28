@@ -717,9 +717,18 @@ function displayRequirement(requirement, parentElement) {
 }
 
 function submitNationality(country) {
+	document.getElementById('cartVisa').innerHTML = ""
+	document.getElementById('cartVisaPrice').innerHTML = ""
 	html = ''
 	document.getElementById("radio").style.display = "none"
 	document.getElementById("radioForm").reset();
 	passport = country
 	displayVisaRequirements();
 }
+
+function addCartVisa(name, price) {
+	document.getElementById('cartVisa').innerHTML = name
+	document.getElementById('cartVisaPrice').innerHTML = price
+	
+}
+
