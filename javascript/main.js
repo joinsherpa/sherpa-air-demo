@@ -140,13 +140,23 @@ function goToBookingConfirmation() {
 	window.location.href = `booking_confirmation.html${window.location.search}`;
 }
 
-//goes to booking_confirmation.html and passes existing query parameters
-function goToTravellerInfo() {
-	if (getReturnDate() == 'null' || window.location.pathname.indexOf('/returnsearch.html') !== -1) {
-		window.location.href = `travellerInfo.html${window.location.search}`;
-	} else {
+function goToReturnSearch(outboundPrice) {
+	if (getReturnDate() == 'null') {
+		goToTravellerInfo(outboundPrice, "")
+	}
+	else {
 		window.location.href = `returnsearch.html${window.location.search}`;
 	}
+}
+
+const price1
+const price2
+
+//goes to booking_confirmation.html and passes existing query parameters
+function goToTravellerInfo(outboundPrice, returnPrice) {
+	window.location.href = `travellerInfo.html${window.location.search}`;
+	price1 = outboundPrice
+	price2 = returnPrice
 }
 
 // returns the query string
@@ -416,8 +426,10 @@ function populateReturnSearchPage() {
 //Populates the traveller info Page based on the URL Query Parameters
 function populateTravellerInfo() {
 	document.getElementById('cartDeparture').innerHTML = `${getOriginName()} to ${getDestinationName()}<br>${getOutboundDate()}`
+	document.getElementById('cartDeparturePrice').innerHTML = `${price1}`
 	if (getReturnDate() != 'null') {
 		document.getElementById('cartReturn').innerHTML = `${getDestinationName()} to ${getOriginName()}<br>${getReturnDate()}`
+		document.getElementById('cartReturnPrice').innerHTML = `${price2}`
 	}
 }
 
