@@ -733,7 +733,7 @@ function submitNationality(country) {
 function addCartVisa(name, price) {
 	var price1 = parseInt(getOutboundPrice())
 	var price2 = parseInt(getReturnPrice())
-	var price3 = parseInt(price)
+	var price3 = parseFloat(price)
 	var total = price1 + price2 + price3
 	document.getElementById('cartVisa').innerHTML = name
 	document.getElementById('cartVisaPrice').innerHTML = `${price3.toFixed(2)}`
