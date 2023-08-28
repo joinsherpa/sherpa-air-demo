@@ -212,6 +212,7 @@ function isInBooking() {
 	if (getDestinationName() == "Nairobi") {
 		return true
 	}
+}
 
 // Creates and retrieves a segment array with: originCode, destinationCode, OriginName, DestinationName, Departure date, Arrival date
 
