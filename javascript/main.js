@@ -140,23 +140,18 @@ function goToBookingConfirmation() {
 	window.location.href = `booking_confirmation.html${window.location.search}`;
 }
 
-var price1 = "price1"
-var price2 = "price2"
-
 function goToReturnSearch(outboundPrice) {
-	price1 = outboundPrice
 	if (getReturnDate() == 'null') {
-		goToTravellerInfo("")
+		window.location.href = `travellerInfo.html${window.location.search}&outboundPrice=${outboundPrice}`;
 	}
 	else {
-		window.location.href = `returnsearch.html${window.location.search}`;
+		window.location.href = `returnsearch.html${window.location.search}&outboundPrice=${outboundPrice}`;
 	}
 }
 
 //goes to booking_confirmation.html and passes existing query parameters
 function goToTravellerInfo(returnPrice) {
-	window.location.href = `travellerInfo.html${window.location.search}`;
-	price2 = returnPrice
+	window.location.href = `travellerInfo.html${window.location.search}&returnPrice=${returnPrice}`;
 }
 
 // returns the query string
@@ -224,6 +219,9 @@ function getPassport() {
 function isInBooking() {
 	if (getDestinationName() == "Nairobi") {
 		return true
+	}
+	else {
+		return false
 	}
 }
 
