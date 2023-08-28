@@ -140,22 +140,22 @@ function goToBookingConfirmation() {
 	window.location.href = `booking_confirmation.html${window.location.search}`;
 }
 
+var price1 = ""
+var price2 = ""
+
 function goToReturnSearch(outboundPrice) {
+	price1 = outboundPrice
 	if (getReturnDate() == 'null') {
-		goToTravellerInfo(outboundPrice, "")
+		goToTravellerInfo("")
 	}
 	else {
 		window.location.href = `returnsearch.html${window.location.search}`;
 	}
 }
 
-const price1
-const price2
-
 //goes to booking_confirmation.html and passes existing query parameters
-function goToTravellerInfo(outboundPrice, returnPrice) {
+function goToTravellerInfo(returnPrice) {
 	window.location.href = `travellerInfo.html${window.location.search}`;
-	price1 = outboundPrice
 	price2 = returnPrice
 }
 
