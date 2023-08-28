@@ -729,6 +729,6 @@ function submitNationality(country) {
 function addCartVisa(name, price) {
 	document.getElementById('cartVisa').innerHTML = name
 	document.getElementById('cartVisaPrice').innerHTML = price
-	
+	document.getElementById('radio').style.display = "none"
 }
 
