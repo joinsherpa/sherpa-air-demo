@@ -359,9 +359,30 @@
         </div>
         <div class="col callout">
           <h2>Your cart</h2>
-          <p id="cartDeparture"></p>
-          <p id="cartReturn"></p>
-          <p id="cartVisa"></p>
+          <div class="row">
+            <div class="col">
+              <p id="cartDeparture"></p>
+            </div>
+            <div class="col">
+              <p id="cartDeparturePrice" style="text-align: right"></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p id="cartReturn"></p>
+            </div>
+            <div class="col">
+              <p id="cartReturnPrice" style="text-align: right"></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p id="cartVisa"></p>
+            </div>
+            <div class="col">
+              <p id="cartVisaPrice" style="text-align: right"></p>
+            </div>
+          </div>
           <button class="btn" type="button" onclick="goToBookingConfirmation()">Complete booking</button>
         </div>
       </div>
