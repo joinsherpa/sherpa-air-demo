@@ -734,5 +734,10 @@ function addCartVisa(name, price) {
 	document.getElementById('cartVisa').innerHTML = name
 	document.getElementById('cartVisaPrice').innerHTML = price
 	document.getElementById('radio').style.display = "none"
+	var price1 = parseInt(getOutboundPrice())
+	var price2 = parseInt(getReturnPrice())
+	var price3 = parseInt(price)
+	var total = price1 + price2 + price3
+	document.getElementById('totalPrice').innerHTML = `${total}`
 }
 
