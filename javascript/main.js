@@ -631,6 +631,8 @@ async function displayVisaRequirements() {
 	);
 
 	headline = requirementsVisa.headline
+	html += `<div>
+ 		<p>${headline}</p>`
 	// Convert the included restrictions and procedures to a hash map
 	// This enables faster look up afterwards
 	requirementsHashMap = response.included.reduce(function(map, obj) {
@@ -667,8 +669,6 @@ function processGroupings(groupings, parentElement) {
   Displays a specific requirement 
 */
 function displayRequirement(requirement, parentElement) {
-	html += `<div>
- 		<p>${headline}</p>`
 	requirement.attributes.actions.forEach((action) => {
 		if (action.provider == 'sherpa' && !isInBooking()) {
 			// If sherpa offers this particular visa
