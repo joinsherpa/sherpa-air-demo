@@ -623,7 +623,6 @@ async function displayVisaRequirements() {
 
 	// Get information groups
 	const requirementsAll = response.data.attributes.informationGroups;
-	headline = requirementsAll[0].headline
 
 
 	// Find the information group related to visa requirements
@@ -631,6 +630,7 @@ async function displayVisaRequirements() {
 		(requirementsGroup) => requirementsGroup.type == 'VISA_REQUIREMENTS'
 	);
 
+	headline = requirementsVisa.headline
 	// Convert the included restrictions and procedures to a hash map
 	// This enables faster look up afterwards
 	requirementsHashMap = response.included.reduce(function(map, obj) {
@@ -678,7 +678,8 @@ function displayRequirement(requirement, parentElement) {
 		}
 		else if (action.provider == 'sherpa' && isInBooking()) {
 			html += `<div>
-				<p>${action.product.name} </p>
+				<p>${headline}</p>
+    				<p>${action.product.name} </p>
     				<p>${action.product.price.value}${action.product.price.currency}</p>
     				<button class="btn">Add to cart</button>
 				</div><br>`
