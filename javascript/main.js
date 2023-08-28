@@ -439,6 +439,10 @@ function populateTravellerInfo() {
 		document.getElementById('cartReturn').innerHTML = `${getDestinationName()} to ${getOriginName()}<br>${getReturnDate()}`
 		document.getElementById('cartReturnPrice').innerHTML = `${getReturnPrice()}`
 	}
+	var price1 = parseInt(getOutboundPrice())
+	var price2 = parseInt(getReturnPrice())
+	var total = price1 + price2
+	document.getElementById('totalPrice').innerHTML = `${total}`
 }
 
 //Populates the MMB Page based on the URL Query Parameters
