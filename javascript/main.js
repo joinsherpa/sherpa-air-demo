@@ -140,8 +140,8 @@ function goToBookingConfirmation() {
 	window.location.href = `booking_confirmation.html${window.location.search}`;
 }
 
-var price1 = ""
-var price2 = ""
+var price1 = "price1"
+var price2 = "price2"
 
 function goToReturnSearch(outboundPrice) {
 	price1 = outboundPrice
@@ -425,6 +425,7 @@ function populateReturnSearchPage() {
 
 //Populates the traveller info Page based on the URL Query Parameters
 function populateTravellerInfo() {
+	console.log(price1 + " + " + price2)
 	document.getElementById('cartDeparture').innerHTML = `${getOriginName()} to ${getDestinationName()}<br>${getOutboundDate()}`
 	document.getElementById('cartDeparturePrice').innerHTML = `${price1}`
 	if (getReturnDate() != 'null') {
