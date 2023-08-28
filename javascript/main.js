@@ -710,7 +710,7 @@ function displayRequirement(requirement, parentElement) {
 		}
 		else if (action.provider == 'sherpa' && isInBooking()) {
 			html += `<p>${action.product.name} </p>
-    				<p>${action.product.price.value}${action.product.price.currency}</p>
+    				<p>${parseFloat(action.product.price.value).toFixed(2)}${action.product.price.currency}</p>
     				<button onclick="addCartVisa('${action.product.name}', '${action.product.price.value}')" class="btn">Add to cart</button>
 				</div><br>`
 			document.getElementById("radio").style.display = "block"
