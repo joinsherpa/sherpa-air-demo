@@ -216,6 +216,16 @@ function getPassport() {
 	return passport;
 }
 
+function getOutboundPrice() {
+	const outboundPrice = getQueryString().get('outboundPrice');
+	return outboundPrice;
+}
+
+function getReturnPrice() {
+	const returnPrice = getQueryString().get('returnPrice');
+	return returnPrice;
+}
+
 function isInBooking() {
 	if (getDestinationName() == "Nairobi") {
 		return true
@@ -423,12 +433,11 @@ function populateReturnSearchPage() {
 
 //Populates the traveller info Page based on the URL Query Parameters
 function populateTravellerInfo() {
-	console.log(price1 + " + " + price2)
 	document.getElementById('cartDeparture').innerHTML = `${getOriginName()} to ${getDestinationName()}<br>${getOutboundDate()}`
-	document.getElementById('cartDeparturePrice').innerHTML = `${price1}`
+	document.getElementById('cartDeparturePrice').innerHTML = `${getOutboundPrice()}`
 	if (getReturnDate() != 'null') {
 		document.getElementById('cartReturn').innerHTML = `${getDestinationName()} to ${getOriginName()}<br>${getReturnDate()}`
-		document.getElementById('cartReturnPrice').innerHTML = `${price2}`
+		document.getElementById('cartReturnPrice').innerHTML = `${getReturnPrice()}`
 	}
 }
 
