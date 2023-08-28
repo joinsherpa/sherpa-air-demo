@@ -736,7 +736,7 @@ function addCartVisa(name, price) {
 	var price3 = parseInt(price)
 	var total = price1 + price2 + price3
 	document.getElementById('cartVisa').innerHTML = name
-	document.getElementById('cartVisaPrice').innerHTML = `${price.toFixed(2)}`
+	document.getElementById('cartVisaPrice').innerHTML = `${price3.toFixed(2)}`
 	document.getElementById('radio').style.display = "none"
 	document.getElementById('totalPrice').innerHTML = `${total.toFixed(2)}`
 }
