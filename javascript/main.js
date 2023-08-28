@@ -208,6 +208,11 @@ function getPassport() {
 	return passport;
 }
 
+function isInBooking() {
+	if (getDestinationName() == "Nairobi") {
+		return true
+	}
+
 // Creates and retrieves a segment array with: originCode, destinationCode, OriginName, DestinationName, Departure date, Arrival date
 
 // function getSegments()
@@ -630,10 +635,6 @@ async function displayVisaRequirements() {
 	}, {});
 
 	const renderElement = document.getElementById('trips-v3');
-	html += `<div>
-  <p>${headline}</p>
- </div>`
-	renderElement.innerHTML = html
 
 	// Parse and display requirements recursively
 	processGroupings(requirementsVisa.groupings, renderElement);
@@ -648,7 +649,7 @@ function processGroupings(groupings, parentElement) {
 	groupings.forEach((grouping) => {
 		// Render all data in the grouping
 		grouping.data.forEach((requirement) =>
-			displayRequirement(requirementsHashMap[requirement.id])
+			displayRequirement(requirementsHashMap[requirement.id], parentElement)
 		);
 
 		// Call the same function on the child groupings if they exist
@@ -661,12 +662,22 @@ function processGroupings(groupings, parentElement) {
 /*
   Displays a specific requirement 
 */
-function displayRequirement(requirement) {
+function displayRequirement(requirement, parentElement) {
 	requirement.attributes.actions.forEach((action) => {
-		if (action.provider == 'sherpa') {
+		if (action.provider == 'sherpa' && !isInBooking()) {
 			// If sherpa offers this particular visa
-			console.log(action);
+			html += `<div>
+				<p>${headline}</p>
+				</div>`
+			parentElement.innerHTML = html
 			document.getElementById("radio").style.display = "block"
+		}
+		else if (action.provider == 'sherpa' && isInBooking()) {
+			html += `<div>
+				<p>${action.product.name} ${action.product.price.value}${action.product.price.currency}</p>
+    				<button class="btn">Add to cart</button>
+				</div>`
+			parentElement.innerHTML = html
 		}
 	});
 }
