@@ -678,9 +678,10 @@ function displayRequirement(requirement, parentElement) {
 		}
 		else if (action.provider == 'sherpa' && isInBooking()) {
 			html += `<div>
-				<p>${action.product.name} ${action.product.price.value}${action.product.price.currency}</p>
+				<p>${action.product.name} </p>
+    				<p>${action.product.price.value}${action.product.price.currency}</p>
     				<button class="btn">Add to cart</button>
-				</div>`
+				</div><br>`
 			parentElement.innerHTML = html
 			document.getElementById("radio").style.display = "block"
 			document.getElementById("radioForm").style.display = "none"
