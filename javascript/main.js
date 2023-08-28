@@ -667,27 +667,23 @@ function processGroupings(groupings, parentElement) {
   Displays a specific requirement 
 */
 function displayRequirement(requirement, parentElement) {
+	html += `<div>
+ 		<p>${headline}</p>`
 	requirement.attributes.actions.forEach((action) => {
 		if (action.provider == 'sherpa' && !isInBooking()) {
 			// If sherpa offers this particular visa
-			html += `<div>
-				<p>${headline}</p>
-				</div>`
-			parentElement.innerHTML = html
+			html += `</div>`
 			document.getElementById("radio").style.display = "block"
 		}
 		else if (action.provider == 'sherpa' && isInBooking()) {
-			html += `<div>
-				<p>${headline}</p>
-    				<p>${action.product.name} </p>
+			html += `<p>${action.product.name} </p>
     				<p>${action.product.price.value}${action.product.price.currency}</p>
     				<button class="btn">Add to cart</button>
 				</div><br>`
-			parentElement.innerHTML = html
 			document.getElementById("radio").style.display = "block"
 			document.getElementById("radioForm").style.display = "none"
-
 		}
+		parentElement.innerHTML = html
 	});
 }
 
