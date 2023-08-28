@@ -86,6 +86,9 @@ function goToFlightSearchPage() {
 		case "SGN":
 			destinationName = "Ho Chi Minh";
 			break;
+		case "NBO":
+			destinationName = "Nairobi";
+			break;
 
 	}
 
