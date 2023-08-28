@@ -417,7 +417,7 @@ function populateReturnSearchPage() {
 function populateTravellerInfo() {
 	document.getElementById('cartDeparture').innerHTML = `${getOriginName()} to ${getDestinationName()}<br>${getOutboundDate()}`
 	if (getReturnDate() != 'null') {
-		document.getElementById('cartReturn').innerHTML = `${getDestinationName()} to ${getDestinationName()}<br>${getReturnDate()}`
+		document.getElementById('cartReturn').innerHTML = `${getDestinationName()} to ${getOriginName()}<br>${getReturnDate()}`
 	}
 }
 
