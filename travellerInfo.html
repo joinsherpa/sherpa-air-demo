@@ -34,7 +34,7 @@
 
     <div class="container">
       <br><h1>Passenger details</h1><br>
-      <div class="col">
+      <div class="col-8">
         <form>
           <div class="row">
             <div class="col">
@@ -356,13 +356,17 @@
           </form>
         </div>
       </div>
+      <div class="col callout">
+        <h2>Your cart</h2>
+        <p id="cartDeparture"></p>
+        <p id="cartReturn"></p>
+        <p id="cartVisa"></p>
+        <button class="btn" type="button" onclick="goToBookingConfirmation()">Complete booking</button>
+      </div>
       
       <div class="row">
         <div class="col">
           <button class="btn" type="button"  onclick="goHome()"> Return to search</button>
-        </div>
-        <div class="col">
-          <button class="btn" type="button"  onclick="goToBookingConfirmation()">Complete booking</button>
         </div>
       </div>
       <br><br>
