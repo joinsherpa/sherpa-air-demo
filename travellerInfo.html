@@ -40,11 +40,11 @@
             <div class="row">
               <div class="col">
                 <label class="form-check-label" for="fname">Given names</label><br>
-                <input class="form-control" type="text" id="fname" name="fname"><br><br>
+                <input onchange="checkFormComplete()" class="form-control" type="text" id="fname" name="fname"><br><br>
               </div>
               <div class="col">
                 <label class="form-check-label" for="lname">Surnames</label><br>
-                <input class="form-control" type="text" id="lname" name="lname">
+                <input onchange="checkFormComplete()" class="form-control" type="text" id="lname" name="lname">
               </div>
             </div>
             <div class="row">
@@ -53,7 +53,7 @@
                 <select
                 id="country"
                 name="country"
-                onchange="submitNationality(this.value)"
+                onchange="submitNationality(this.value);checkFormComplete()"
                 class="form-control"
                 >
                   <option selected="selected" value="">Select</option>
@@ -313,7 +313,7 @@
               </div>
               <div class="col">
                 <label class="form-check-label" for="gender">Gender</label><br>
-                <select class="form-control" id="gender">
+                <select onchange="checkFormComplete()" class="form-control" id="gender">
                   <option selected="selected" value="">Select</option>
                   <option value="m">Male</option>
                   <option value="f">Female</option>
@@ -321,7 +321,7 @@
               </div>
               <div class="col">
                 <label class="form-check-label" for="birthday">Date of birth</label><br>
-                <input class="date-picker" type="date" id="birthday" name="birthday">
+                <input onchange="checkFormComplete()" class="date-picker" type="date" id="birthday" name="birthday">
               </div> 
             </div>
           </form><br>
