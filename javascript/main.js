@@ -135,6 +135,13 @@ function destinationEgypt() {
 	window.location.href = `destination_egypt.html`;
 }
 
+function goToCheckout() {
+	let visaName = document.getElementById('cartVisa').textContent
+	let visaPrice = document.getElementById('cartVisaPrice').textContent
+	console.log(visaName + " " + visaPrice)
+	window.location.href = `checkout.html${window.location.search}&visaName=${visaName}&visaPrice=${visaPrice}`;
+}
+
 //goes to travellerInfo.html and passses existing query parameters
 function goToBookingConfirmation() {
 	window.location.href = `booking_confirmation.html${window.location.search}`;
@@ -224,6 +231,16 @@ function getOutboundPrice() {
 function getReturnPrice() {
 	const returnPrice = getQueryString().get('returnPrice');
 	return returnPrice;
+}
+
+function getVisaName() {
+	const visaName = getQueryString().get('visaName');
+	return visaName;
+}
+
+function getVisaPrice() {
+	const visaPrice = getQueryString().get('visaPrice');
+	return visaPrice;
 }
 
 function isInBooking() {
