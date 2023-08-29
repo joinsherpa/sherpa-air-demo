@@ -136,10 +136,15 @@ function destinationEgypt() {
 }
 
 function goToCheckout() {
-	let visaName = document.getElementById('cartVisa').textContent
-	let visaPrice = document.getElementById('cartVisaPrice').textContent
-	console.log(visaName + " " + visaPrice)
-	window.location.href = `checkout.html${window.location.search}&visaName=${visaName}&visaPrice=${visaPrice}`;
+	if (isInBooking()) {
+		let visaName = document.getElementById('cartVisa').textContent
+		let visaPrice = document.getElementById('cartVisaPrice').textContent
+		console.log(visaName + " " + visaPrice)
+		window.location.href = `checkout.html${window.location.search}&visaName=${visaName}&visaPrice=${visaPrice}`;
+	}
+	else {
+		goToBookingConfirmation()
+	}
 }
 
 //goes to travellerInfo.html and passses existing query parameters
@@ -458,6 +463,24 @@ function populateTravellerInfo() {
 	if (getReturnDate() != 'null') {
 		document.getElementById('cartReturn').innerHTML = `${getDestinationName()} to ${getOriginName()}<br>${getReturnDate()}`
 		document.getElementById('cartReturnPrice').innerHTML = `${price2.toFixed(2)}`
+	}
+	document.getElementById('totalPrice').innerHTML = `${total.toFixed(2)}`
+}
+
+function populateCheckout() {
+	var price1 = parseInt(getOutboundPrice())
+	var price2 = parseInt(getReturnPrice())
+	var price3 = parseFloat(getVisaPrice())
+	var total = price1 + price2 + price3
+	document.getElementById('cartDeparture').innerHTML = `${getOriginName()} to ${getDestinationName()}<br>${getOutboundDate()}`
+	document.getElementById('cartDeparturePrice').innerHTML = `${price1.toFixed(2)}`
+	if (getReturnDate() != 'null') {
+		document.getElementById('cartReturn').innerHTML = `${getDestinationName()} to ${getOriginName()}<br>${getReturnDate()}`
+		document.getElementById('cartReturnPrice').innerHTML = `${price2.toFixed(2)}`
+	}
+	if (getVisaName() != 'null') {
+		document.getElementById('cartVisa').innerHTML = `${getVisaName()}`
+		document.getElementById('cartVisaPrice').innerHTML = `${getVisaPrice()}`
 	}
 	document.getElementById('totalPrice').innerHTML = `${total.toFixed(2)}`
 }
