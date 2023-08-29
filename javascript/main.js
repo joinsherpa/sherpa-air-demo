@@ -840,7 +840,7 @@ async function createPayOrder() {
     headers: {
       accept: 'application/json',
       'content-type': 'application/vnd.api+json',
-      affiliateId: 'sherpaair',
+      'affiliateId': 'sherpaair',
     },
     body: JSON.stringify(order()),
   });
