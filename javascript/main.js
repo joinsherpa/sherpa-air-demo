@@ -471,7 +471,7 @@ function populateCheckout() {
 	var price1 = parseInt(getOutboundPrice())
 	var price2 = parseInt(getReturnPrice())
 	var price3 = parseFloat(getVisaPrice())
-	var total = price1 + price2 + price3
+	var total = price1 + price2
 	document.getElementById('cartDeparture').innerHTML = `${getOriginName()} to ${getDestinationName()}<br>${getOutboundDate()}`
 	document.getElementById('cartDeparturePrice').innerHTML = `${price1.toFixed(2)}`
 	if (getReturnDate() != 'null') {
@@ -481,6 +481,7 @@ function populateCheckout() {
 	if (getVisaName() != 'null') {
 		document.getElementById('cartVisa').innerHTML = `${getVisaName()}`
 		document.getElementById('cartVisaPrice').innerHTML = `${getVisaPrice()}`
+		total += price3
 	}
 	document.getElementById('totalPrice').innerHTML = `${total.toFixed(2)}`
 }
