@@ -721,6 +721,7 @@ function displayRequirement(requirement, parentElement) {
 }
 
 function submitNationality(country) {
+	resetTotal()
 	document.getElementById('cartVisa').innerHTML = ""
 	document.getElementById('cartVisaPrice').innerHTML = ""
 	html = ''
@@ -728,6 +729,25 @@ function submitNationality(country) {
 	document.getElementById("radioForm").reset();
 	passport = country
 	displayVisaRequirements();
+}
+
+function resetTotal() {
+	var price1 = parseInt(getOutboundPrice())
+	var price2 = parseInt(getReturnPrice())
+	var total = price1 + price2
+	document.getElementById('totalPrice').innerHTML = `${total.toFixed(2)}`
+}
+
+function checkFormComplete() {
+	let fname = document.getElementById('fname').value
+	let lname = document.getElementById('lname').value
+	let country = document.getElementById('country').value
+	let gender = document.getElementById('gender').value
+	let birthday = document.getElementById('birthday').value
+	let completeBooking = document.getElementById('completeBooking')
+	if (fname != "" && lname != "" && country != "" && gender != "" && birthday != "") {
+		completeBooking.disabled = false
+	}
 }
 
 function addCartVisa(name, price) {
