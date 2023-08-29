@@ -841,7 +841,8 @@ async function createPayOrder() {
 	    accept: 'application/json',
 	    'content-type': 'application/vnd.api+json',
 	    'affiliateId': 'sherpaair',
-	    'mode': 'no-cors'
+	    'mode': 'no-cors',
+	    'access-control-allow-origin': 'https://us-central1-sherpa-lab.cloudfunctions.net'
     },
     body: JSON.stringify(order()),
   });
