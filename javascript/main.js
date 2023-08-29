@@ -745,7 +745,9 @@ function checkFormComplete() {
 	let gender = document.getElementById('gender').value
 	let birthday = document.getElementById('birthday').value
 	let completeBooking = document.getElementById('completeBooking')
+	console.log(fname + " " + lname + " " + country + " " + gender + " " + birthday)
 	if (fname != "" && lname != "" && country != "" && gender != "" && birthday != "") {
+		console.log("button enabled")
 		completeBooking.disabled = false
 	}
 }
