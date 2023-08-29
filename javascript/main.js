@@ -838,9 +838,10 @@ async function createPayOrder() {
   const responseRaw = await fetch(URL_ORDERS, {
     method: 'POST',
     headers: {
-      accept: 'application/json',
-      'content-type': 'application/vnd.api+json',
-      'affiliateId': 'sherpaair',
+	    accept: 'application/json',
+	    'content-type': 'application/vnd.api+json',
+	    'affiliateId': 'sherpaair',
+	    'mode': 'no-cors'
     },
     body: JSON.stringify(order()),
   });
