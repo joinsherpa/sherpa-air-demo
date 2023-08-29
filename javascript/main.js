@@ -806,3 +806,44 @@ function addCartVisa(name, price) {
 	document.getElementById('totalPrice').innerHTML = `${total.toFixed(2)}`
 }
 
+const URL_ORDERS =
+  'https://us-central1-sherpa-lab.cloudfunctions.net/demositeCreatePayOrder';
+
+function order() {
+  return {
+    currency: 'CAD',
+    affiliateContext: {
+      customString: 'demo site test order',
+    },
+    items: [
+      {
+        applicationData: {
+          displayName: 'John Doe',
+          arrivalDate: '2023-08-01',
+          nationality: 'USA',
+          passport: 'USA',
+        },
+        programId: 'ZWE_EVISA',
+        productId: 'ZWE_EVISA__SINGLE_ENTRY_30',
+      },
+    ],
+    contactName: 'Zed',
+    contactEmail: 'contact@contactname.com',
+    contactPhoneNumber: '4165555555',
+  };
+}
+
+async function createPayOrder() {
+  // Make API call
+  const responseRaw = await fetch(URL_ORDERS, {
+    method: 'POST',
+    headers: {
+      accept: 'application/json',
+      'content-type': 'application/vnd.api+json',
+      affiliateId: 'sherpaair',
+    },
+    body: JSON.stringify(order()),
+  });
+  const response = await responseRaw.json();
+  console.log(responseRaw.status, await response);
+}
