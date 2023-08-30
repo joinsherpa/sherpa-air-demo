@@ -794,7 +794,7 @@ function checkFormComplete() {
 	let email = document.getElementById('email').value
 	let phone = document.getElementById('phone').value
 	let completeBooking = document.getElementById('completeBooking')
-	if (fname != "" && lname != "" && country != "" && gender != "" && birthday != "" && email != "" && phone != "" {
+	if (fname != "" && lname != "" && country != "" && gender != "" && birthday != "" && email != "" && phone != "") {
 		completeBooking.disabled = false
 	}
 }
