@@ -877,7 +877,7 @@ function order() {
 
 async function createPayOrder() {
 	console.log('Submitted to Orders API. Awaiting response...')
-	console.log(JSON.stringify(order())
+	console.log(JSON.stringify(order()))
 	// Make API call
 	const responseRaw = await fetch(URL_ORDERS, {
 		method: 'POST',
