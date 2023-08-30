@@ -147,6 +147,7 @@ function goToCheckout() {
 		let product = document.getElementById('product').textContent
 		let program = document.getElementById('program').textContent
 		window.location.href = `checkout.html${window.location.search}&visaName=${visaName}&visaPrice=${visaPrice}&fName=${fname}&lName=${lname}&nationality=${country}&email=${email}&phone=${phone}&productId=${product}&programId=${program}`
+	}
 	else {
 		goToBookingConfirmation()
 	}
