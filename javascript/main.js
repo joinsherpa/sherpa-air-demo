@@ -139,9 +139,14 @@ function goToCheckout() {
 	if (isInBooking()) {
 		let visaName = document.getElementById('cartVisa').textContent
 		let visaPrice = document.getElementById('cartVisaPrice').textContent
-		console.log(visaName + " " + visaPrice)
-		window.location.href = `checkout.html${window.location.search}&visaName=${visaName}&visaPrice=${visaPrice}`;
-	}
+		let fname = document.getElementById('fname').value
+		let lname = document.getElementById('lname').value
+		let country = document.getElementById('country').value
+		let email = document.getElementById('email').value
+		let phone = document.getElementById('phone').value
+		let product = document.getElementById('product').textContent
+		let program = document.getElementById('program').textContent
+		window.location.href = `checkout.html${window.location.search}&visaName=${visaName}&visaPrice=${visaPrice}&fName=${fname}&lName=${lname}&nationality=${country}&email=${email}&phone=${phone}&productId=${product}&programId=${program}`
 	else {
 		goToBookingConfirmation()
 	}
@@ -741,9 +746,8 @@ function processGroupings(groupings, parentElement) {
 	});
 }
 
-/*
-  Displays a specific requirement 
-*/
+
+
 function displayRequirement(requirement, parentElement) {
 	requirement.attributes.actions.forEach((action) => {
 		if (action.provider == 'sherpa' && !isInBooking()) {
@@ -754,7 +758,7 @@ function displayRequirement(requirement, parentElement) {
 		else if (action.provider == 'sherpa' && isInBooking()) {
 			html += `<p>${action.product.name} </p>
     				<p>${parseFloat(action.product.price.value).toFixed(2)}${action.product.price.currency}</p>
-    				<button onclick="addCartVisa('${action.product.name}', '${action.product.price.value}')" class="btn">Add to cart</button>
+    				<button onclick="addCartVisa('${action.product.name}', '${action.product.price.value}', '${action.product.productId}', '${action.product.programId}')" class="btn">Add to cart</button>
 				</div><br>`
 			document.getElementById("radio").style.display = "block"
 			document.getElementById("radioForm").style.display = "none"
@@ -787,15 +791,17 @@ function checkFormComplete() {
 	let country = document.getElementById('country').value
 	let gender = document.getElementById('gender').value
 	let birthday = document.getElementById('birthday').value
+	let email = document.getElementById('email').value
+	let phone = document.getElementById('phone').value
 	let completeBooking = document.getElementById('completeBooking')
-	console.log(fname + " " + lname + " " + country + " " + gender + " " + birthday)
-	if (fname != "" && lname != "" && country != "" && gender != "" && birthday != "") {
-		console.log("button enabled")
+	if (fname != "" && lname != "" && country != "" && gender != "" && birthday != "" && email != "" && phone != "" {
 		completeBooking.disabled = false
 	}
 }
 
-function addCartVisa(name, price) {
+function addCartVisa(name, price, product, program) {
+	document.getElementById('product').innerHTML = product
+	document.getElementById('program').innerHTML = program
 	var price1 = parseInt(getOutboundPrice())
 	var price2 = parseInt(getReturnPrice())
 	var price3 = parseFloat(price)
@@ -809,31 +815,67 @@ function addCartVisa(name, price) {
 const URL_ORDERS =
   'https://us-central1-sherpa-lab.cloudfunctions.net/demositeCreatePayOrder';
 
+function getFName() {
+	const fName = getQueryString().get('fName');
+	return fName;
+}
+
+function getLName() {
+	const lName = getQueryString().get('lName');
+	return lName;
+}
+
+function getProgram() {
+	const program = getQueryString().get('program');
+	return program;
+}
+
+function getProduct() {
+	const product = getQueryString().get('product');
+	return product;
+}
+
+function getEmail() {
+	const email = getQueryString().get('email');
+	return email;
+}
+
+function getPhone() {
+	const phone = getQueryString().get('phone');
+	return phone;
+}
+
+function getNationality() {
+	const nationality = getQueryString().get('nationality');
+	return nationality;
+}
+
 function order() {
   return {
-    currency: 'CAD',
+    currency: 'USD',
     affiliateContext: {
-      customString: 'demo site test order',
+      customString: '',
     },
     items: [
       {
         applicationData: {
-          displayName: 'John Doe',
-          arrivalDate: '2023-08-01',
-          nationality: 'USA',
-          passport: 'USA',
+          displayName: [getFName()] + ' ' + [getLName()],
+          arrivalDate: [getOutboundDate()],
+          nationality: [getNationality()],
+          passport: [getNationality()],
         },
-        programId: 'ZWE_EVISA',
-        productId: 'ZWE_EVISA__SINGLE_ENTRY_30',
+        programId: [getProgram()],
+        productId: [getProduct()],
       },
     ],
-    contactName: 'Zed',
-    contactEmail: 'zeeshawn@joinsherpa.com',
-    contactPhoneNumber: '4165555555',
+    contactName: [getFName()],
+    contactEmail: [getEmail()],
+    contactPhoneNumber: [getPhone()]
   };
 }
 
 async function createPayOrder() {
+	console.log('Submitted to Orders API. Awaiting response...')
   // Make API call
   const responseRaw = await fetch(URL_ORDERS, {
     method: 'POST',
@@ -844,6 +886,11 @@ async function createPayOrder() {
     },
     body: JSON.stringify(order()),
   });
-  const response = await responseRaw.json();
-  console.log(responseRaw.status, await response);
+
+	responseRaw
+	  .then((response) => response.json())
+	  .then({
+	    console.log(responseRaw.status, await response);
+	    console.log("Going to BoookingConfirmation page...");
+		});
 }
