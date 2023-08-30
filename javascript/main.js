@@ -887,6 +887,6 @@ async function createPayOrder() {
 		},
 		body: JSON.stringify(order()),
 	});
-	const jsonReponse = await response.json();
-	console.log(responseRaw.status, jsonResponse)
+  const response = await responseRaw.json();
+  console.log(responseRaw.status, await response);
 }
