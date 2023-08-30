@@ -840,6 +840,7 @@ async function createPayOrder() {
     headers: {
 	    'accept': 'application/json',
 	    'affiliateId': 'sherpaair',
+	    'content-type':'application/json',
     },
     body: JSON.stringify(order()),
   });
