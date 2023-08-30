@@ -860,18 +860,18 @@ function order() {
     items: [
       {
         applicationData: {
-          displayName: [getFName()] + ' ' + [getLName()],
-          arrivalDate: [getOutboundDate()],
-          nationality: [getNationality()],
-          passport: [getNationality()],
+          displayName: getFName() + ' ' + getLName(),
+          arrivalDate: getOutboundDate(),
+          nationality: getNationality(),
+          passport: getNationality(),
         },
-        programId: [getProgram()],
-        productId: [getProduct()],
+        programId: getProgram(),
+        productId: getProduct(),
       },
     ],
-    contactName: [getFName()],
-    contactEmail: [getEmail()],
-    contactPhoneNumber: [getPhone()]
+    contactName: getFName(),
+    contactEmail: getEmail(),
+    contactPhoneNumber: getPhone()
   };
 }
 
