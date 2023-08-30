@@ -807,7 +807,7 @@ function addCartVisa(name, price) {
 }
 
 const URL_ORDERS =
-  'https://us-central1-sherpa-lab.cloudfunctions.net/demositeCreatePayOrder?affiliateId=zeenewtest';
+  'https://us-central1-sherpa-lab.cloudfunctions.net/demositeCreatePayOrder';
 
 function order() {
   return {
@@ -839,7 +839,7 @@ async function createPayOrder() {
     method: 'POST',
     headers: {
 	    'accept': 'application/json',
-	  //  'affiliateId': 'sherpaair',
+	    'affiliateId': 'sherpaair',
     },
     body: JSON.stringify(order()),
   });
