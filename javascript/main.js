@@ -474,10 +474,10 @@ function populateTravellerInfo() {
 }
 
 function populateCheckout() {
-	document.getElementById('name').innerHTML = ${getFName()} + ' ' + ${getLName()}
-	document.getElementById('passport').innerHTML = ${getNationality()}
-	document.getElementById('email').innerHTML = ${getEmail()}
-	document.getElementById('phone').innerHTML = ${getPhone()}
+	document.getElementById('name').innerHTML = `${getFName()} ${getLName()}`
+	document.getElementById('passport').innerHTML = `${getNationality()}`
+	document.getElementById('email').innerHTML = `${getEmail()}`
+	document.getElementById('phone').innerHTML = `${getPhone()}`
 	var price1 = parseInt(getOutboundPrice())
 	var price2 = parseInt(getReturnPrice())
 	var price3 = parseFloat(getVisaPrice())
