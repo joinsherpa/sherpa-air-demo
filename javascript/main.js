@@ -877,21 +877,21 @@ function order() {
 
 async function createPayOrder() {
 	console.log('Submitted to Orders API. Awaiting response...')
-  // Make API call
-  const responseRaw = await fetch(URL_ORDERS, {
-    method: 'POST',
-    headers: {
-	    'accept': 'application/json',
-	    'affiliateId': 'sherpaair',
-	    'content-type': 'application/vnd.api+json'
-    },
-    body: JSON.stringify(order()),
-  });
-
-	responseRaw
-	  .then((response) => response.json())
-	  .then({
-	    console.log(responseRaw.status, await response);
-	    console.log("Going to BoookingConfirmation page...");
-		});
+	// Make API call
+	const responseRaw = await fetch(URL_ORDERS, {
+		method: 'POST',
+		headers: {
+			'accept': 'application/json',
+			'affiliateId': 'sherpaair',
+			'content-type': 'application/vnd.api+json'
+		},
+		body: JSON.stringify(order()),
+	});
+	
+	responseRaw.then((response) => {
+		const jsonResponse = response.json();
+		jsonResponse.then(
+			console.log(responseRaw.status, response)
+		);
+	});
 }
