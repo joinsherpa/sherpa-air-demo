@@ -827,12 +827,12 @@ function getLName() {
 }
 
 function getProgram() {
-	const program = getQueryString().get('program');
+	const program = getQueryString().get('programId');
 	return program;
 }
 
 function getProduct() {
-	const product = getQueryString().get('product');
+	const product = getQueryString().get('productId');
 	return product;
 }
 
@@ -877,7 +877,7 @@ function order() {
 
 async function createPayOrder() {
 	console.log('Submitted to Orders API. Awaiting response...')
-	console.log(JSON.stringify(order()))
+	console.log(order())
 	// Make API call
 	const responseRaw = await fetch(URL_ORDERS, {
 		method: 'POST',
