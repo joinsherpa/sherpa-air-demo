@@ -828,7 +828,7 @@ function order() {
       },
     ],
     contactName: 'Zed',
-    contactEmail: 'contact@contactname.com',
+    contactEmail: 'zeeshawn@joinsherpa.com',
     contactPhoneNumber: '4165555555',
   };
 }
