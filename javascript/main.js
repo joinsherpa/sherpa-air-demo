@@ -469,7 +469,7 @@ function populateTravellerInfo() {
 	var total = price1 + price2
 	document.getElementById('cartDeparture').innerHTML = `${getOriginName()} to ${getDestinationName()}<br>${getOutboundDate()}`
 	document.getElementById('cartDeparturePrice').innerHTML = `${price1.toFixed(2)}`
-	if () {
+	if (getReturnDate() != 'null') {
 		document.getElementById('cartReturn').innerHTML = `${getDestinationName()} to ${getOriginName()}<br>${getReturnDate()}`
 		document.getElementById('cartReturnPrice').innerHTML = `${price2.toFixed(2)}`
 	}
