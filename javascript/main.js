@@ -462,11 +462,14 @@ function populateReturnSearchPage() {
 //Populates the traveller info Page based on the URL Query Parameters
 function populateTravellerInfo() {
 	var price1 = parseInt(getOutboundPrice())
-	var price2 = parseInt(getReturnPrice())
+	var price2 = 0
+	if (getReturnDate() != 'null') {
+		price2 = parseInt(getReturnPrice())
+	}
 	var total = price1 + price2
 	document.getElementById('cartDeparture').innerHTML = `${getOriginName()} to ${getDestinationName()}<br>${getOutboundDate()}`
 	document.getElementById('cartDeparturePrice').innerHTML = `${price1.toFixed(2)}`
-	if (getReturnDate() != 'null') {
+	if () {
 		document.getElementById('cartReturn').innerHTML = `${getDestinationName()} to ${getOriginName()}<br>${getReturnDate()}`
 		document.getElementById('cartReturnPrice').innerHTML = `${price2.toFixed(2)}`
 	}
