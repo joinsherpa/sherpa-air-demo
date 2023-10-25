@@ -1,3 +1,7 @@
 Hello There, 
 
-this is a file we want to change
+this is an awesome file we want to change. 
+
+We should just go ahead and do something fantastic! 
+
+Baam.
