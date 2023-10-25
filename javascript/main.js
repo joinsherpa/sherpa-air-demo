@@ -15,7 +15,10 @@ var transit = 'none';
 var headline = '';
 var html = '';
 var VIdestination = '';
+var VItransit = '';
 var VIorigin = '';
+var VIvisaInfo1 = '';
+var VIvisaInfo2 = '';
 var leg = 1;
 
 // General use functions -----------------------------------------------------------
@@ -50,6 +53,16 @@ function getTodaysDate() {
     ('0' + nextWeek.getDate()).slice(-2);
   document.getElementById('departDate').value = today;
   document.getElementById('returnDate').value = returnDate;
+}
+
+function toggleMMBTRs(depTR) {;
+  if (depTR.style.display == 'none') {
+    console.log('open', depTR.style);
+    depTR.style.display = 'block';
+  } else {
+    console.log('close', depTR.style);
+    depTR.style.display = 'none';
+  }
 }
 
 // Modal functions -----------------------------------------------------------
@@ -614,12 +627,15 @@ function populateMMB() {
     .insertAdjacentHTML('beforeend', getReturnDate());
 
   if (getDestinationCode() == 'MPM') {
+    VIdisplayAllRequirements();
     document.getElementById('VIflights').style.display = 'block';
+    document.getElementById('middleColDep').innerHTML =
+      '<p>08:35</p><p>Ponta Delgada<br>(PDL)</p>';
     document.getElementById(
       'departureDestination'
-    ).innerHTML = `Ponta Delgada <br> (PDL)`;
-    document.getElementById('departTime').innerHTML = '09:05';
-    document.getElementById('arriveTime').innerHTML = '06:50';
+    ).innerHTML = `Lisbon <br> (LIS)`;
+    document.getElementById('departTime').innerHTML = '17:05';
+    document.getElementById('arriveTime').innerHTML = '11:50';
     document.getElementById('departTitle').innerHTML = 'Departing flights';
   }
 
@@ -1010,6 +1026,20 @@ function VIitinerary(passport) {
             airportCode: VIorigin,
           },
           {
+            type: 'TRANSIT',
+            departure: {
+              date: getOutboundDate(),
+              time: '05:00',
+              travelMode: 'AIR',
+            },
+            arrival: {
+              date: getOutboundDate(),
+              time: '06:00',
+              travelMode: 'AIR',
+            },
+            airportCode: VItransit,
+          },
+          {
             type: 'DESTINATION',
             arrival: {
               date: getOutboundDate(),
@@ -1027,15 +1057,11 @@ function VIitinerary(passport) {
 async function VIdisplayVisaRequirements() {
   if (leg == 1) {
     VIorigin = 'YYZ';
-    VIdestination = 'PDL';
-  } else if (leg == 2) {
-    VIorigin = 'PDL';
+    VItransit = 'PDL';
     VIdestination = 'LIS';
-  } else if (leg == 3) {
+  } else if (leg == 2) {
     VIorigin = 'LIS';
-    VIdestination = 'IST';
-  } else {
-    VIorigin = 'IST';
+    VItransit = 'IST';
     VIdestination = 'MPM';
   }
   const responseRaw = await fetch(URL_TRIPS_V3, {
@@ -1053,8 +1079,13 @@ async function VIdisplayVisaRequirements() {
     (requirementsGroup) => requirementsGroup.type == 'VISA_REQUIREMENTS'
   );
   headline = requirementsVisa.headline;
-  html += `<div>
+  if (leg == 1) {
+    VIvisaInfo1 += `<div>
  		<p>${headline}</p>`;
+  } else {
+    VIvisaInfo2 += `<div>
+ 		<p>${headline}</p>`;
+  }
   requirementsHashMap = response.included.reduce(function (map, obj) {
     map[obj.id] = obj;
     return map;
@@ -1066,23 +1097,82 @@ async function VIdisplayVisaRequirements() {
 function VIprocessGroupings(groupings, parentElement) {
   if (groupings != null && groupings.length > 0) {
     groupings.forEach((grouping) => {
-      grouping.data.forEach(
-        (requirement) => (html += `</div>`),
-        (parentElement.innerHTML = html)
-      );
+      grouping.data.forEach((requirement) => (html += `</div>`));
       if (grouping.groupings) {
         VIprocessGroupings(groupings.groupings, parentElement);
       }
     });
   }
-  if (leg < 4) {
+  if (leg < 2) {
     leg = leg + 1;
     VIdisplayVisaRequirements();
   } else {
     document.getElementById('moreinfo').innerHTML =
-      '<p>Toronto (YYZ) --> Ponta Delgada (PDL) --> Lisbon (LIS)</p>' +
-      '<p>Self-transfer required at Lisboa Airport (LIS)</p>' +
-      '<p>Lisbon LIS --> Istanbul (IST) --> Maputo (MPM)</p>' +
-      html;
+      '<div style="border-style: solid;padding: 10px;"> <p>Toronto (YYZ) --> Ponta Delgada (PDL) --> Lisbon (LIS)</p>' +
+      VIvisaInfo1 +
+      '</div>' +
+      '<p>Self-transfer required at Lisboa Airport (LIS)</p></div><br>' +
+      '<div style="border-style: solid;padding: 10px;"><p>Lisbon LIS --> Istanbul (IST) --> Maputo (MPM)</p>' +
+      VIvisaInfo2 +
+      '</div></div><br>';
+  }
+}
+
+async function VIdisplayAllRequirements() {
+  var renderElement = document.getElementById('requirementsAll');
+  if (leg == 1) {
+    VIorigin = 'YYZ';
+    VItransit = 'PDL';
+    VIdestination = 'LIS';
+  } else if (leg == 2) {
+    VIorigin = 'LIS';
+    VItransit = 'IST';
+    VIdestination = 'MPM';
+    renderElement = document.getElementById('requirementsAll2');
+  }
+  const responseRaw = await fetch(URL_TRIPS_V3, {
+    method: 'POST',
+    headers: {
+      accept: 'application/json',
+      'content-type': 'application/vnd.api+json',
+      'x-api-key': API_KEY_TRIPS_V3,
+    },
+    body: JSON.stringify(VIitinerary(passport)),
+  });
+  const response = await responseRaw.json();
+  const requirementsAll = response.data.attributes.informationGroups;
+
+  requirementsHashMap = response.included.reduce(function (map, obj) {
+    map[obj.id] = obj;
+    return map;
+  }, {});
+
+  for (let i = 0; i < requirementsAll.length; i++) {
+    console.log(i, requirementsAll[i].name);
+    VIprocessAllGroupings(requirementsAll[i].groupings, renderElement);
+  }
+}
+
+function VIprocessAllGroupings(groupings, parentElement) {
+  if (groupings != null && groupings.length > 0) {
+    groupings.forEach((grouping) => {
+      grouping.data.forEach(function (requirement) {
+        if (
+          requirementsHashMap[requirement.id].attributes.category !=
+          'NO_RESTRICTION'
+        )
+          parentElement.innerHTML +=
+            '<p>' +
+            requirementsHashMap[requirement.id].attributes.description +
+            '</p>';
+      });
+      if (grouping.groupings) {
+        VIprocessGroupings(groupings.groupings, parentElement);
+      }
+    });
+  }
+  if (leg < 2) {
+    leg = leg + 1;
+    VIdisplayAllRequirements();
   }
 }
