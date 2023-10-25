@@ -1,6 +1,6 @@
 Hello World, 
 
-this is an awesome file we want to change, in the hopes someone is reading it.
+this is something new here.
 
 We should just go ahead and do something fantastic! 
 
