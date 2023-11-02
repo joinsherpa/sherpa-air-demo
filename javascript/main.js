@@ -55,13 +55,19 @@ function getTodaysDate() {
   document.getElementById('returnDate').value = returnDate;
 }
 
-function toggleMMBTRs(depTR) {;
-  if (depTR.style.display == 'none') {
-    console.log('open', depTR.style);
-    depTR.style.display = 'block';
-  } else {
-    console.log('close', depTR.style);
-    depTR.style.display = 'none';
+function toggleRequirements(element) {;
+  var requirements
+  if (element.id == "requirementsToggle") {
+    requirements = document.getElementById("requirementsAll")
+  }
+  else if (element.id == "requirementsToggle2") {
+    requirements = document.getElementById("requirementsAll2")
+  }
+  if (requirements.style.display == "none") {
+    requirements.style.display = "block"
+  }
+  else {
+    requirements.style.display = "none"
   }
 }
 
@@ -628,6 +634,8 @@ function populateMMB() {
 
   if (getDestinationCode() == 'MPM') {
     VIdisplayAllRequirements();
+    document.getElementById("requirementsToggle").style.display = "block"
+    document.getElementById("requirementsToggle2").style.display = "block"
     document.getElementById('VIflights').style.display = 'block';
     document.getElementById('middleColDep').innerHTML =
       '<p>08:35</p><p>Ponta Delgada<br>(PDL)</p>';
@@ -1108,11 +1116,11 @@ function VIprocessGroupings(groupings, parentElement) {
     VIdisplayVisaRequirements();
   } else {
     document.getElementById('moreinfo').innerHTML =
-      '<div style="border-style: solid;padding: 10px;"> <p>Toronto (YYZ) --> Ponta Delgada (PDL) --> Lisbon (LIS)</p>' +
+      '<div style="border-style: solid;padding: 10px;"> <p><b><u>Toronto (YYZ) --> Ponta Delgada (PDL) --> Lisbon (LIS)</u></b></p>' +
       VIvisaInfo1 +
       '</div>' +
       '<p>Self-transfer required at Lisboa Airport (LIS)</p></div><br>' +
-      '<div style="border-style: solid;padding: 10px;"><p>Lisbon LIS --> Istanbul (IST) --> Maputo (MPM)</p>' +
+      '<div style="border-style: solid;padding: 10px;"><p><b><u>Lisbon LIS --> Istanbul (IST) --> Maputo (MPM)</u></b></p>' +
       VIvisaInfo2 +
       '</div></div><br>';
   }
